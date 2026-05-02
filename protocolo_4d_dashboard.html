@@ -1,0 +1,124 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+  .dash { font-family: 'DM Sans', sans-serif; background: #f4ede0; min-height: 560px; border-radius: 12px; overflow: hidden; display: flex; }
+  .sidebar { width: 200px; background: #1B4B5A; display: flex; flex-direction: column; padding: 24px 0; flex-shrink: 0; }
+  .sb-logo { padding: 0 20px 24px; border-bottom: 1px solid #2a5f70; margin-bottom: 16px; }
+  .sb-logo-mark { width: 32px; height: 32px; background: #C9A84C; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .sb-logo-mark span { color: #1B4B5A; font-size: 13px; font-weight: 500; }
+  .sb-title { color: #E8DCC8; font-size: 13px; font-family: 'Playfair Display', serif; }
+  .sb-section { padding: 0 12px; margin-bottom: 4px; }
+  .sb-label { font-size: 10px; color: #5a8a96; text-transform: uppercase; letter-spacing: 0.1em; padding: 0 8px; margin-bottom: 6px; }
+  .sb-item { display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 6px; cursor: pointer; color: #8aacb5; font-size: 13px; }
+  .sb-item.active { background: #C9A84C22; color: #E8DCC8; }
+  .sb-item:hover { background: #ffffff11; }
+  .sb-icon { width: 16px; height: 16px; opacity: 0.7; }
+  .main { flex: 1; padding: 28px; overflow: hidden; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .page-title { font-family: 'Playfair Display', serif; color: #1B4B5A; font-size: 20px; font-weight: 400; margin: 0; }
+  .top-date { font-size: 12px; color: #9a8e80; }
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .metric-card { background: #fff; border-radius: 8px; padding: 16px; border: 0.5px solid #d8ceba; }
+  .metric-label { font-size: 11px; color: #9a8e80; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 6px; }
+  .metric-val { font-size: 26px; color: #1B4B5A; font-weight: 500; margin: 0; font-family: 'Playfair Display', serif; }
+  .metric-sub { font-size: 11px; color: #C9A84C; margin: 4px 0 0; }
+  .section-title { font-size: 13px; font-weight: 500; color: #1B4B5A; margin: 0 0 12px; }
+  .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border-radius: 8px; border: 0.5px solid #d8ceba; padding: 16px; }
+  .client-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0e8d8; }
+  .client-row:last-child { border-bottom: none; }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: #e8dcc8; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #1B4B5A; font-weight: 500; flex-shrink: 0; }
+  .client-info { flex: 1; }
+  .client-name { font-size: 13px; color: #2C2C2C; margin: 0; }
+  .client-last { font-size: 11px; color: #9a8e80; margin: 0; }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; }
+  .badge-ok { background: #e1f5ee; color: #0f6e56; }
+  .badge-pend { background: #faeeda; color: #854f0b; }
+  .diary-card { background: #1B4B5A; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .diary-name { color: #E8DCC8; font-size: 14px; font-weight: 500; margin: 0 0 4px; }
+  .diary-qs { color: #8aacb5; font-size: 12px; margin: 0 0 10px; }
+  .diary-active { display: flex; align-items: center; gap: 6px; }
+  .active-dot { width: 6px; height: 6px; background: #C9A84C; border-radius: 50%; }
+  .active-text { color: #C9A84C; font-size: 11px; }
+  .rel-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 0.5px solid #f0e8d8; }
+  .rel-row:last-child { border-bottom: none; }
+  .rel-name { font-size: 12px; color: #2C2C2C; }
+  .rel-date { font-size: 11px; color: #9a8e80; }
+  .rel-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: #e1f5ee; color: #0f6e56; }
+  .rel-badge-draft { background: #f1efe8; color: #5f5e5a; }
+</style>
+<div class="dash">
+  <div class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-mark"><span>4D</span></div>
+      <div class="sb-title">Protocolo 4D</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Principal</div>
+      <div class="sb-item active">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor"/><rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" opacity=".5"/><rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" opacity=".5"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" opacity=".5"/></svg>
+        Dashboard
+      </div>
+      <div class="sb-item">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 13c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Clientes
+      </div>
+      <div class="sb-item">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Diários
+      </div>
+      <div class="sb-item">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><path d="M3 3h10v10H3z" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Relatórios
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="top-bar">
+      <p class="page-title">Dashboard</p>
+      <span class="top-date">Sábado, 2 de maio de 2026</span>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <p class="metric-label">Clientes ativos</p>
+        <p class="metric-val">8</p>
+        <p class="metric-sub">2 aguardando acesso</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Respostas esta semana</p>
+        <p class="metric-val">34</p>
+        <p class="metric-sub">↑ 12% vs semana anterior</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Relatórios pendentes</p>
+        <p class="metric-val">3</p>
+        <p class="metric-sub">Aprovação necessária</p>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <p class="section-title">Clientes recentes</p>
+        <div class="panel">
+          <div class="client-row"><div class="avatar">AM</div><div class="client-info"><p class="client-name">Ana Martins</p><p class="client-last">Respondeu hoje</p></div><span class="badge badge-ok">Em dia</span></div>
+          <div class="client-row"><div class="avatar">CS</div><div class="client-info"><p class="client-name">Carla Souza</p><p class="client-last">Há 2 dias</p></div><span class="badge badge-pend">Pendente</span></div>
+          <div class="client-row"><div class="avatar">LF</div><div class="client-info"><p class="client-name">Laura Faria</p><p class="client-last">Respondeu hoje</p></div><span class="badge badge-ok">Em dia</span></div>
+          <div class="client-row"><div class="avatar">BR</div><div class="client-info"><p class="client-name">Beatriz Ramos</p><p class="client-last">Há 3 dias</p></div><span class="badge badge-pend">Pendente</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="section-title">Diário ativo</p>
+        <div class="diary-card">
+          <p class="diary-name">Check-in Semanal</p>
+          <p class="diary-qs">5 perguntas · Ativo desde abr/26</p>
+          <div class="diary-active"><div class="active-dot"></div><span class="active-text">Ativo agora</span></div>
+        </div>
+        <p class="section-title">Últimos relatórios</p>
+        <div class="panel">
+          <div class="rel-row"><div><p class="rel-name">Ana Martins</p><p class="rel-date">25–30 abr</p></div><span class="rel-badge">Publicado</span></div>
+          <div class="rel-row"><div><p class="rel-name">Laura Faria</p><p class="rel-date">25–30 abr</p></div><span class="rel-badge-draft rel-badge">Rascunho</span></div>
+          <div class="rel-row"><div><p class="rel-name">Carla Souza</p><p class="rel-date">18–24 abr</p></div><span class="rel-badge">Publicado</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

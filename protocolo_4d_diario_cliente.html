@@ -1,0 +1,117 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+  .diary-wrap { font-family: 'DM Sans', sans-serif; background: #f4ede0; min-height: 520px; border-radius: 12px; overflow: hidden; }
+  .diary-header { background: #1B4B5A; padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .dh-left { display: flex; align-items: center; gap: 12px; }
+  .dh-mark { width: 28px; height: 28px; background: #C9A84C; border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+  .dh-mark span { color: #1B4B5A; font-size: 11px; font-weight: 500; }
+  .dh-title { color: #E8DCC8; font-size: 14px; font-family: 'Playfair Display', serif; }
+  .dh-right { display: flex; align-items: center; gap: 8px; }
+  .dh-avatar { width: 30px; height: 30px; border-radius: 50%; background: #C9A84C22; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #E8DCC8; font-weight: 500; border: 1px solid #C9A84C44; }
+  .dh-name { color: #8aacb5; font-size: 12px; }
+  .diary-nav { background: #163d4a; padding: 0 28px; display: flex; gap: 0; border-bottom: 1px solid #1B4B5A; }
+  .dn-item { padding: 10px 16px; font-size: 12px; color: #5a8a96; cursor: pointer; border-bottom: 2px solid transparent; }
+  .dn-item.active { color: #E8DCC8; border-bottom: 2px solid #C9A84C; }
+  .diary-body { padding: 28px; }
+  .db-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+  .db-title { font-family: 'Playfair Display', serif; color: #1B4B5A; font-size: 20px; font-weight: 400; margin: 0; }
+  .db-date { font-size: 12px; color: #9a8e80; }
+  .progress-bar { width: 100%; height: 3px; background: #d8ceba; border-radius: 2px; margin-bottom: 24px; }
+  .progress-fill { height: 3px; background: #C9A84C; border-radius: 2px; width: 60%; transition: width 0.3s; }
+  .q-card { background: #fff; border-radius: 8px; border: 0.5px solid #d8ceba; padding: 20px; margin-bottom: 14px; }
+  .q-num { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #C9A84C; margin: 0 0 6px; font-weight: 500; }
+  .q-text { font-size: 14px; color: #2C2C2C; margin: 0 0 14px; line-height: 1.5; }
+  .scale-row { display: flex; gap: 8px; align-items: center; }
+  .scale-label { font-size: 11px; color: #9a8e80; }
+  .scale-btn { width: 36px; height: 36px; border-radius: 6px; border: 1px solid #d8ceba; background: #f8f4ee; cursor: pointer; font-size: 13px; font-weight: 500; color: #5a5a5a; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+  .scale-btn.sel { background: #1B4B5A; color: #E8DCC8; border-color: #1B4B5A; }
+  .scale-btn:hover { border-color: #1B4B5A; }
+  .yesno-row { display: flex; gap: 10px; }
+  .yn-btn { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #d8ceba; background: #f8f4ee; cursor: pointer; font-size: 13px; color: #5a5a5a; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .yn-btn.sel { background: #1B4B5A; color: #E8DCC8; border-color: #1B4B5A; }
+  .textarea-q { width: 100%; box-sizing: border-box; border: 1px solid #d8ceba; border-radius: 6px; background: #f8f4ee; padding: 10px 12px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #2C2C2C; resize: none; height: 70px; outline: none; }
+  .textarea-q:focus { border-color: #1B4B5A; }
+  .submit-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .submit-btn { padding: 11px 28px; background: #1B4B5A; color: #E8DCC8; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .submit-btn:hover { background: #153d49; }
+  .q-progress { font-size: 11px; color: #9a8e80; margin-bottom: 4px; }
+</style>
+<div class="diary-wrap">
+  <div class="diary-header">
+    <div class="dh-left">
+      <div class="dh-mark"><span>4D</span></div>
+      <span class="dh-title">Protocolo 4D</span>
+    </div>
+    <div class="dh-right">
+      <div class="dh-avatar">AM</div>
+      <span class="dh-name">Ana Martins</span>
+    </div>
+  </div>
+  <div class="diary-nav">
+    <div class="dn-item active">Meu diário</div>
+    <div class="dn-item">Histórico</div>
+    <div class="dn-item">Relatórios</div>
+  </div>
+  <div class="diary-body">
+    <div class="db-top">
+      <p class="db-title">Check-in de hoje</p>
+      <span class="db-date">Sábado, 2 de maio de 2026</span>
+    </div>
+    <p class="q-progress" id="prog-label">3 de 5 perguntas respondidas</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+
+    <div class="q-card">
+      <p class="q-num">Pergunta 1 de 5</p>
+      <p class="q-text">Como você avalia seu nível de bem-estar emocional hoje?</p>
+      <div class="scale-row">
+        <span class="scale-label">Baixo</span>
+        <div class="scale-btn sel" onclick="selectScale(this,'s1')">1</div>
+        <div class="scale-btn" onclick="selectScale(this,'s1')">2</div>
+        <div class="scale-btn" onclick="selectScale(this,'s1')">3</div>
+        <div class="scale-btn" onclick="selectScale(this,'s1')">4</div>
+        <div class="scale-btn" onclick="selectScale(this,'s1')">5</div>
+        <span class="scale-label">Alto</span>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <p class="q-num">Pergunta 2 de 5</p>
+      <p class="q-text">Você conseguiu dormir bem na noite passada?</p>
+      <div class="yesno-row">
+        <button class="yn-btn sel" onclick="selectYN(this,'yn1')">Sim</button>
+        <button class="yn-btn" onclick="selectYN(this,'yn1')">Não</button>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <p class="q-num">Pergunta 3 de 5</p>
+      <p class="q-text">Descreva brevemente como foi seu dia em termos de ansiedade ou tensão.</p>
+      <textarea class="textarea-q" placeholder="Escreva aqui..."></textarea>
+    </div>
+
+    <div class="submit-row">
+      <button class="submit-btn">Enviar respostas</button>
+    </div>
+  </div>
+</div>
+<script>
+function selectScale(el, group) {
+  el.closest('.scale-row').querySelectorAll('.scale-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  updateProgress();
+}
+function selectYN(el, group) {
+  el.closest('.yesno-row').querySelectorAll('.yn-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  updateProgress();
+}
+function updateProgress() {
+  const scale = document.querySelectorAll('.scale-btn.sel').length;
+  const yn = document.querySelectorAll('.yn-btn.sel').length;
+  const total = scale + yn + 1;
+  const pct = Math.round((total / 5) * 100);
+  document.getElementById('prog-fill').style.width = Math.min(pct, 100) + '%';
+  document.getElementById('prog-label').textContent = Math.min(total,5) + ' de 5 perguntas respondidas';
+}
+</script>

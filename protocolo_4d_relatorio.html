@@ -1,0 +1,123 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+  .rel-wrap { font-family: 'DM Sans', sans-serif; background: #f4ede0; min-height: 560px; border-radius: 12px; overflow: hidden; display: flex; }
+  .sidebar { width: 200px; background: #1B4B5A; display: flex; flex-direction: column; padding: 24px 0; flex-shrink: 0; }
+  .sb-logo { padding: 0 20px 24px; border-bottom: 1px solid #2a5f70; margin-bottom: 16px; }
+  .sb-mark { width: 32px; height: 32px; background: #C9A84C; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .sb-mark span { color: #1B4B5A; font-size: 11px; font-weight: 500; }
+  .sb-brand { color: #E8DCC8; font-size: 13px; font-family: 'Playfair Display', serif; }
+  .sb-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; margin: 0 12px; border-radius: 6px; cursor: pointer; color: #8aacb5; font-size: 13px; }
+  .sb-item.active { background: #C9A84C22; color: #E8DCC8; }
+  .main { flex: 1; padding: 28px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+  .top-row { display: flex; justify-content: space-between; align-items: center; }
+  .page-title { font-family: 'Playfair Display', serif; color: #1B4B5A; font-size: 20px; font-weight: 400; margin: 0; }
+  .breadcrumb { font-size: 12px; color: #9a8e80; }
+  .step-bar { display: flex; align-items: center; gap: 0; margin-bottom: 4px; }
+  .step { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .step-circle { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; flex-shrink: 0; }
+  .step.done .step-circle { background: #1B4B5A; color: #E8DCC8; }
+  .step.active .step-circle { background: #C9A84C; color: #1B4B5A; }
+  .step.todo .step-circle { background: #e0d4c0; color: #9a8e80; }
+  .step.done .step-label { color: #1B4B5A; }
+  .step.active .step-label { color: #C9A84C; font-weight: 500; }
+  .step.todo .step-label { color: #9a8e80; }
+  .step-line { flex: 1; height: 1px; background: #d8ceba; margin: 0 8px; max-width: 32px; }
+  .content-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 14px; flex: 1; }
+  .panel { background: #fff; border-radius: 8px; border: 0.5px solid #d8ceba; padding: 16px; }
+  .panel-title { font-size: 12px; font-weight: 500; color: #1B4B5A; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 14px; }
+  .field-label { font-size: 11px; color: #9a8e80; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 5px; }
+  .field-val { font-size: 13px; color: #2C2C2C; margin: 0 0 14px; padding: 8px 12px; background: #f8f4ee; border-radius: 6px; border: 1px solid #e8dcc8; }
+  .period-row { display: flex; gap: 8px; margin-bottom: 14px; }
+  .period-row .field-val { flex: 1; margin: 0; }
+  .gen-btn { width: 100%; padding: 11px; background: #1B4B5A; color: #E8DCC8; border: none; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .gen-btn:hover { background: #153d49; }
+  .ai-badge { display: inline-flex; align-items: center; gap: 4px; background: #C9A84C22; color: #C9A84C; font-size: 10px; padding: 3px 8px; border-radius: 10px; border: 1px solid #C9A84C44; margin-bottom: 12px; }
+  .report-text { font-size: 13px; color: #2C2C2C; line-height: 1.7; white-space: pre-line; background: #faf7f2; border: 1px solid #e8dcc8; border-radius: 6px; padding: 14px; height: 220px; overflow-y: auto; resize: none; width: 100%; box-sizing: border-box; font-family: 'DM Sans', sans-serif; outline: none; }
+  .action-row { display: flex; gap: 8px; margin-top: 12px; }
+  .btn-sec { flex: 1; padding: 9px; border: 1px solid #d8ceba; background: #f8f4ee; border-radius: 6px; font-size: 12px; color: #5a5a5a; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-pub { flex: 1; padding: 9px; background: #C9A84C; color: #1B4B5A; border: none; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-pub:hover { background: #b8973e; }
+  .summary-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .chip { font-size: 11px; padding: 4px 10px; border-radius: 10px; background: #e8dcc8; color: #5a4a30; }
+  .chip.alert { background: #faeeda; color: #854f0b; }
+</style>
+<div class="rel-wrap">
+  <div class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-mark"><span>4D</span></div>
+      <div class="sb-brand">Protocolo 4D</div>
+    </div>
+    <div class="sb-item">Dashboard</div>
+    <div class="sb-item">Clientes</div>
+    <div class="sb-item">Diários</div>
+    <div class="sb-item active">Relatórios</div>
+  </div>
+  <div class="main">
+    <div class="top-row">
+      <p class="page-title">Gerar relatório</p>
+      <span class="breadcrumb">Ana Martins · Semana 25–30 abr</span>
+    </div>
+    <div class="step-bar">
+      <div class="step done"><div class="step-circle">✓</div><span class="step-label">Selecionar período</span></div>
+      <div class="step-line"></div>
+      <div class="step done"><div class="step-circle">✓</div><span class="step-label">Gerar com IA</span></div>
+      <div class="step-line"></div>
+      <div class="step active"><div class="step-circle">3</div><span class="step-label">Revisar e editar</span></div>
+      <div class="step-line"></div>
+      <div class="step todo"><div class="step-circle">4</div><span class="step-label">Publicar</span></div>
+    </div>
+    <div class="content-grid">
+      <div class="panel">
+        <p class="panel-title">Configuração</p>
+        <p class="field-label">Cliente</p>
+        <div class="field-val">Ana Martins</div>
+        <p class="field-label">Período</p>
+        <div class="period-row">
+          <div class="field-val">25/04/2026</div>
+          <div class="field-val">30/04/2026</div>
+        </div>
+        <p class="field-label">Diário utilizado</p>
+        <div class="field-val">Check-in Semanal · 5 perguntas</div>
+        <p class="field-label">Respostas no período</p>
+        <div class="field-val">6 de 6 dias respondidos</div>
+        <button class="gen-btn">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#E8DCC8" stroke-width="1.5"/><path d="M6 8l1.5 1.5L10 6" stroke="#E8DCC8" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Regerar rascunho
+        </button>
+      </div>
+      <div class="panel">
+        <p class="panel-title">Rascunho gerado pela IA</p>
+        <div class="ai-badge">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#C9A84C" stroke-width="1.2"/><path d="M4 6l1.5 1.5L8 4" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Gerado por IA · Revisão necessária
+        </div>
+        <div class="summary-chips">
+          <span class="chip">Bem-estar estável</span>
+          <span class="chip alert">Ansiedade elevada (qua/qui)</span>
+          <span class="chip">Sono regular</span>
+        </div>
+        <textarea class="report-text">Período: 25 a 30 de abril de 2026
+Cliente: Ana Martins
+
+PADRÕES OBSERVADOS
+Ana manteve regularidade no preenchimento ao longo da semana (6/6 dias). O nível de bem-estar emocional oscilou entre 3 e 4, com queda para 2 na quarta e quinta-feira.
+
+VARIAÇÕES SIGNIFICATIVAS
+Nos dias 27 e 28, a cliente relatou tensão elevada associada a situações de trabalho. O sono foi classificado como satisfatório em 4 dos 6 dias.
+
+PONTOS DE ATENÇÃO
+Padrão de ansiedade concentrado no meio da semana. Recomenda-se explorar os gatilhos descritos na sessão de quinta-feira.
+
+PRÓXIMOS PASSOS SUGERIDOS
+— Revisitar estratégias de regulação para o contexto profissional
+— Monitorar padrão de sono nos próximos 7 dias</textarea>
+        <div class="action-row">
+          <button class="btn-sec">⬇ Baixar .docx</button>
+          <button class="btn-sec">⬆ Subir .docx editado</button>
+          <button class="btn-pub">Publicar para cliente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

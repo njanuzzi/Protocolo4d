@@ -1,0 +1,71 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+  .p4d-wrap { background: #1B4B5A; min-height: 520px; display: flex; border-radius: 12px; overflow: hidden; font-family: 'DM Sans', sans-serif; }
+  .p4d-left { width: 42%; background: #153d49; display: flex; flex-direction: column; justify-content: center; padding: 48px 40px; }
+  .p4d-logo-mark { width: 48px; height: 48px; background: #C9A84C; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 32px; }
+  .p4d-logo-mark span { color: #1B4B5A; font-weight: 500; font-size: 20px; font-family: 'Playfair Display', serif; }
+  .p4d-brand { font-family: 'Playfair Display', serif; color: #E8DCC8; font-size: 22px; font-weight: 400; margin: 0 0 8px; }
+  .p4d-tagline { color: #8aacb5; font-size: 13px; font-weight: 300; line-height: 1.6; margin: 0; }
+  .p4d-divider { width: 32px; height: 1px; background: #C9A84C; margin: 28px 0; opacity: 0.6; }
+  .p4d-feature { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+  .p4d-dot { width: 6px; height: 6px; background: #C9A84C; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .p4d-feat-text { color: #8aacb5; font-size: 12px; line-height: 1.5; }
+  .p4d-right { flex: 1; background: #E8DCC8; display: flex; flex-direction: column; justify-content: center; padding: 48px 44px; }
+  .p4d-form-title { font-family: 'Playfair Display', serif; color: #1B4B5A; font-size: 24px; font-weight: 400; margin: 0 0 6px; }
+  .p4d-form-sub { color: #7a6e60; font-size: 13px; margin: 0 0 32px; }
+  .p4d-tab-row { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 1.5px solid #c8bca8; }
+  .p4d-tab { padding: 8px 20px; font-size: 13px; cursor: pointer; color: #9a8e80; border-bottom: 2px solid transparent; margin-bottom: -1.5px; }
+  .p4d-tab.active { color: #1B4B5A; border-bottom: 2px solid #C9A84C; font-weight: 500; }
+  .p4d-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #7a6e60; margin: 0 0 6px; font-weight: 500; }
+  .p4d-input { width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid #c8bca8; border-radius: 6px; background: #f5ede0; font-size: 14px; color: #2C2C2C; margin-bottom: 18px; font-family: 'DM Sans', sans-serif; outline: none; }
+  .p4d-input:focus { border-color: #1B4B5A; background: #fff; }
+  .p4d-btn { width: 100%; padding: 12px; background: #1B4B5A; color: #E8DCC8; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: 0.03em; }
+  .p4d-btn:hover { background: #153d49; }
+  .p4d-link-info { margin-top: 20px; padding: 12px 14px; background: #f5ede0; border-radius: 6px; border-left: 3px solid #C9A84C; }
+  .p4d-link-info p { margin: 0; font-size: 12px; color: #7a6e60; line-height: 1.5; }
+  .p4d-link-info strong { color: #1B4B5A; }
+</style>
+<div class="p4d-wrap">
+  <div class="p4d-left">
+    <div class="p4d-logo-mark"><span>4D</span></div>
+    <p class="p4d-brand">Protocolo 4D</p>
+    <p class="p4d-tagline">Portal clínico privado para acompanhamento terapêutico estruturado.</p>
+    <div class="p4d-divider"></div>
+    <div class="p4d-feature"><div class="p4d-dot"></div><p class="p4d-feat-text">Diário diário com perguntas estruturadas</p></div>
+    <div class="p4d-feature"><div class="p4d-dot"></div><p class="p4d-feat-text">Painel clínico para o terapeuta</p></div>
+    <div class="p4d-feature"><div class="p4d-dot"></div><p class="p4d-feat-text">Relatórios semanais com apoio de IA</p></div>
+    <div class="p4d-feature"><div class="p4d-dot"></div><p class="p4d-feat-text">Dados isolados por cliente</p></div>
+  </div>
+  <div class="p4d-right">
+    <p class="p4d-form-title">Acesso ao portal</p>
+    <p class="p4d-form-sub">Entre com suas credenciais para continuar</p>
+    <div class="p4d-tab-row">
+      <div class="p4d-tab active" onclick="showTab('terapeuta',this)">Terapeuta</div>
+      <div class="p4d-tab" onclick="showTab('cliente',this)">Cliente</div>
+    </div>
+    <div id="tab-terapeuta">
+      <p class="p4d-label">E-mail</p>
+      <input class="p4d-input" type="email" placeholder="seu@email.com" />
+      <p class="p4d-label">Senha</p>
+      <input class="p4d-input" type="password" placeholder="••••••••" />
+      <button class="p4d-btn">Entrar</button>
+    </div>
+    <div id="tab-cliente" style="display:none">
+      <p class="p4d-label">E-mail</p>
+      <input class="p4d-input" type="email" placeholder="seu@email.com" />
+      <button class="p4d-btn">Receber link de acesso</button>
+      <div class="p4d-link-info">
+        <p><strong>Acesso por link mágico.</strong> Você receberá um e-mail com um link de acesso. Não é necessário senha.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function showTab(tab, el) {
+  document.getElementById('tab-terapeuta').style.display = tab === 'terapeuta' ? 'block' : 'none';
+  document.getElementById('tab-cliente').style.display = tab === 'cliente' ? 'block' : 'none';
+  document.querySelectorAll('.p4d-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
